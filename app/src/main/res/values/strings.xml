@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Assist 911</string>
+
+    <!--Registration Page-->
+    <string name="username_label">Username</string>
+    <string name="address_label">Address</string>
+    <string name="save_registration_data">Save</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_review_registration">ReviewRegistrationActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_instructional_video">InstructionalVideoActivity</string>
+    <string name="title_activity_practice_video">PracticeVideoActivity</string>
+    <string name="title_activity_practice_lock_screen">PracticeLockScreenActivity</string>
+    <string name="title_activity_practice_dialer">PracticeDialerActivity</string>
+    <string name="title_activity_practice_prompts">PracticePromptsActivity</string>
+    <string name="title_activity_results">ResultsActivity</string>
+    <string name="button_play">►</string>
+    <string name="button_replay">⟲</string>
+    <string name="button_positive">+</string>
+    <string name="button_negative">-</string>
+</resources>
