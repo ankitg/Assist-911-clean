@@ -45,8 +45,8 @@ public class ReviewRegistrationActivity extends Activity {
     };
 
     private void loadPreferences() {
-        mUsername.setText(Assist911Application.mSharedPreferences.getString("username", ""));
-        mAddress.setText(Assist911Application.mSharedPreferences.getString("address", ""));
+        mUsername.setText(Assist911Application._SharedPreferences.getString("username", ""));
+        mAddress.setText(Assist911Application._SharedPreferences.getString("address", ""));
     }
 
     @Override

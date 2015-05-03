@@ -5,4 +5,12 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="pwKey">
+        <item name ="android:textColor">#fff</item>
+        <item name ="android:textSize">@dimen/keypad_number_size</item>
+        <item name ="android:background">#000</item>
+        <item name ="android:layout_weight">1</item>
+        <item name ="android:layout_height">@dimen/keypad_button_height</item>
+    </style>
+
 </resources>

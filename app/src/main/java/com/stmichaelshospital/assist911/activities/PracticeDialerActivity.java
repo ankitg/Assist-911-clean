@@ -14,6 +14,24 @@ public class PracticeDialerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_dialer);
+        
+        initializeViews();
+    }
+
+    private void initializeViews() {
+    }
+
+    private void onDial() {
+        // TODO: Play dialtone
+        // TODO: say "911, what is your name?"
+        // TODO: listen for answer
+        // TODO: check answer
+
+        // TODO: say "911, what is your address?"
+        // TODO: listen for answer
+        // TODO: say "911, what is the nature of your emergency?"
+        // TODO: if level 1, show image depending on the emergency.
+        // TODO: listen for answer
     }
 
     @Override

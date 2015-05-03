@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
 
+import com.stmichaelshospital.assist911.Assist911Application;
 import com.stmichaelshospital.assist911.R;
 
 
@@ -26,6 +27,7 @@ public class InstructionalVideoActivity  extends Activity implements MediaPlayer
 
         initializeViews();
         playInstructionalVideo();
+        devModeSetup(Assist911Application.isDevMode);
     }
 
     private void initializeViews() {
@@ -61,6 +63,14 @@ public class InstructionalVideoActivity  extends Activity implements MediaPlayer
             mVideoView.setOnCompletionListener(this);
             mVideoView.setVideoURI(Uri.parse(mUrl));
             mVideoView.start();
+        }
+    }
+
+    private void devModeSetup(Boolean isDevMode) {
+        if(isDevMode) {
+            // Enable buttons.
+            mReplayButton.setEnabled(true);
+            mNextButton.setEnabled(true);
         }
     }
 

@@ -37,9 +37,9 @@ public class RegistrationActivity extends Activity {
     View.OnClickListener onSaveClicked = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-        Assist911Application.mSharedPreferencesEditor.putString("username", mUsername.getText().toString());
-        Assist911Application.mSharedPreferencesEditor.putString("address", mAddress.getText().toString());
-        Assist911Application.mSharedPreferencesEditor.commit();
+        Assist911Application._SharedPreferencesEditor.putString("username", mUsername.getText().toString());
+        Assist911Application._SharedPreferencesEditor.putString("address", mAddress.getText().toString());
+        Assist911Application._SharedPreferencesEditor.commit();
 
         Intent mReviewRegistrationIntent = new Intent(RegistrationActivity.this, ReviewRegistrationActivity.class);
         startActivity(mReviewRegistrationIntent);
@@ -48,8 +48,8 @@ public class RegistrationActivity extends Activity {
     };
 
     private void loadPreferences() {
-        mUsername.setText(Assist911Application.mSharedPreferences.getString("username", ""));
-        mAddress.setText(Assist911Application.mSharedPreferences.getString("address", ""));
+        mUsername.setText(Assist911Application._SharedPreferences.getString("username", ""));
+        mAddress.setText(Assist911Application._SharedPreferences.getString("address", ""));
     }
 
 //    @Override
