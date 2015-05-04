@@ -3,6 +3,7 @@ package com.stmichaelshospital.assist911.activities;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -26,7 +27,8 @@ public class PracticeLockScreenActivity extends Activity implements TextToSpeech
         setContentView(R.layout.activity_practice_lock_screen);
 
         initializeViews();
-        initializeTextToSpeech();
+        initializeTextToSpeechIfNeeded();
+//        disableVisualPromptsIfApplicable();
     }
 
     private void initializeViews() {
@@ -42,13 +44,18 @@ public class PracticeLockScreenActivity extends Activity implements TextToSpeech
         });
     }
 
-    private void initializeTextToSpeech() {
+    private void initializeTextToSpeechIfNeeded() {
+        // TODO: Check if audio prompts are enabled
         mTextToSpeech = new TextToSpeech(this, this);
     }
 
     private void audioPrompts() {
-        // TODO: Check if audio prompts are enabled
         say("Press the green.");
+    }
+
+    private void disableVisualPromptsIfApplicable() {
+        // TODO: Check if visual prompts are enabled
+        mEmergencyCallButton.setBackgroundColor(Color.BLACK);
     }
 
     @Override

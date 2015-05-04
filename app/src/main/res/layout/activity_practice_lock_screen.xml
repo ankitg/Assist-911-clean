@@ -222,7 +222,7 @@ tools:context="com.stmichaelshospital.assist911.activities.PracticeLockScreenAct
             android:gravity="center"
             android:id="@+id/btn_emergency_call_practice_lock_screen"
             android:background="#0B0"
-            android:layout_span="17" />
+            android:layout_span="2" />
 
     </TableRow>
 
