@@ -50,6 +50,7 @@ public class PracticeVideoActivity extends Activity implements MediaPlayer.OnCom
                 startActivity(mPracticeLockScreenIntent);
             } else {
                 // TODO:They made a mistake, let them know.
+                setAndPlayPracticeVideo();
             }
         }
     };
@@ -65,7 +66,7 @@ public class PracticeVideoActivity extends Activity implements MediaPlayer.OnCom
     };
 
     private void setAndPlayPracticeVideo() {
-        mVideo = Assist911Application.videosArray.get(new Random().nextInt(Assist911Application.videosArray.size()));
+        mVideo = Assist911Application._VideosArray.get(new Random().nextInt(Assist911Application._VideosArray.size()));
 
         int mVideoResource = getResources().getIdentifier(mVideo.videoName, "raw", getPackageName());
         String mUrl = "android.resource://" + getPackageName() + "/" + mVideoResource;

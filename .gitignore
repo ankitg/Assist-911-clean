@@ -16,6 +16,10 @@ gen/
 .classpath
 .project
 
+# Android Studio
+*.iml
+.idea
+
 # Gradle files
 .gradle/
 build/
@@ -29,3 +33,10 @@ proguard/
 
 # Log Files
 *.log
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+

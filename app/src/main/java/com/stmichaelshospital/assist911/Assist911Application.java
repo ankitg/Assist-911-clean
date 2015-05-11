@@ -10,9 +10,11 @@ import java.util.ArrayList;
  */
 public class Assist911Application extends Application {
 
-    public static SharedPreferences mSharedPreferences = null;
-    public static SharedPreferences.Editor mSharedPreferencesEditor = null;
-    public static ArrayList<VideoItem> videosArray = new ArrayList<VideoItem>();
+    public static SharedPreferences _SharedPreferences = null;
+    public static SharedPreferences.Editor _SharedPreferencesEditor = null;
+    public static ArrayList<VideoItem> _VideosArray = new ArrayList<VideoItem>();
+
+    public static final Boolean isDevMode = true;
 
     @Override
     public void onCreate() {
@@ -22,18 +24,23 @@ public class Assist911Application extends Application {
     }
 
     private void configureSharedPreferences() {
-        mSharedPreferences = getApplicationContext().getSharedPreferences("Preferences", MODE_PRIVATE);
-        mSharedPreferencesEditor = mSharedPreferences.edit();
+        _SharedPreferences = getApplicationContext().getSharedPreferences("Preferences", MODE_PRIVATE);
+        _SharedPreferencesEditor = _SharedPreferences.edit();
     }
 
-    private static void populateVideosArray() {
-        videosArray.add(new VideoItem("Flames", "flame", VideoItem.EMERGENCYTYPE.FIRE));
-        videosArray.add(new VideoItem("Smoke", "smoke", VideoItem.EMERGENCYTYPE.FIRE));
-        videosArray.add(new VideoItem("Car Thief", "car", VideoItem.EMERGENCYTYPE.POLICE));
-        videosArray.add(new VideoItem("Passing Out", "passed", VideoItem.EMERGENCYTYPE.AMBULANCE));
-        videosArray.add(new VideoItem("Drowning", "drowning", VideoItem.EMERGENCYTYPE.AMBULANCE));
-        videosArray.add(new VideoItem("Children Biking", "a", VideoItem.EMERGENCYTYPE.NONE));
-        videosArray.add(new VideoItem("Family Playing Soccer", "b", VideoItem.EMERGENCYTYPE.NONE));
+    private void populateVideosArray() {
+        _VideosArray.add(new VideoItem("Flames", "flame", VideoItem.EMERGENCYTYPE.FIRE));
+        _VideosArray.add(new VideoItem("Smoke", "smoke", VideoItem.EMERGENCYTYPE.FIRE));
+        _VideosArray.add(new VideoItem("Car Thief", "car", VideoItem.EMERGENCYTYPE.POLICE));
+        _VideosArray.add(new VideoItem("Passing Out", "passed", VideoItem.EMERGENCYTYPE.AMBULANCE));
+        _VideosArray.add(new VideoItem("Drowning", "drowning", VideoItem.EMERGENCYTYPE.AMBULANCE));
+        _VideosArray.add(new VideoItem("Children Biking", "a", VideoItem.EMERGENCYTYPE.NONE));
+        _VideosArray.add(new VideoItem("Family Playing Soccer", "b", VideoItem.EMERGENCYTYPE.NONE));
     }
 
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        _VideosArray = null;
+    }
 }
