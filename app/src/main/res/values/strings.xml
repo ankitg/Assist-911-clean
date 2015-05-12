@@ -21,4 +21,7 @@
     <string name="button_replay">⟲</string>
     <string name="button_positive">+</string>
     <string name="button_negative">-</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
