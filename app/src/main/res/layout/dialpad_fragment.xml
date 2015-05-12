@@ -31,8 +31,7 @@
         android:layout_height="0px"
         android:layout_weight="@integer/dialpad_layout_weight_digits"
         android:layout_marginTop="@dimen/dialpad_vertical_margin"
-        android:gravity="center"
-        android:background="@drawable/dialpad_background" >
+        android:gravity="center" >
 
         <com.android.dialer.dialpad.DigitsEditText
             android:id="@+id/digits"
@@ -68,8 +67,7 @@
         <View
             android:id="@+id/dialpad_smartdial_list_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/dialpad_background">
+            android:layout_height="match_parent">
         </View>
         <LinearLayout
             android:id="@+id/dialpad_smartdial_list"
@@ -91,8 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="0px"
         android:layout_weight="@integer/dialpad_layout_weight_additional_buttons"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/dialpad_background">
+        android:layout_gravity="center_horizontal">
 
         <ImageButton
             android:id="@+id/dialButton"
