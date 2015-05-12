@@ -73,7 +73,7 @@ public class PracticeLockScreenActivity extends Activity implements TextToSpeech
 
     @SuppressLint("NewApi")
     private void say(String text) {
-        if (Build.VERSION.SDK_INT < 21) {
+        if (Build.VERSION.SDK_INT >= 21) {
             mTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
         } else {
             mTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
