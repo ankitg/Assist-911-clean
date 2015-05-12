@@ -11,10 +11,10 @@ import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.stmichaelshospital.assist911.Assist911Application;
+import com.stmichaelshospital.assist911.CallStates;
 import com.stmichaelshospital.assist911.R;
 import com.stmichaelshospital.assist911.VideoItem;
 
@@ -26,10 +26,14 @@ import java.util.Locale;
 public class PracticeDialerActivity extends Activity implements TextToSpeech.OnInitListener {
 
     private MediaPlayer mMediaPlayer; // For the phone ringing.
+
     private TextToSpeech mTextToSpeech; // For the audio prompts.
     private Boolean isTTSAvailable = false;
+
     private SpeechRecognizer mSpeechRecognizer;
+
     private VideoItem mVideo = null;
+    private CallStates mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +78,13 @@ public class PracticeDialerActivity extends Activity implements TextToSpeech.OnI
             // Play dialtone
             mMediaPlayer = MediaPlayer.create(this, R.raw.phone_ringing);
             mMediaPlayer.start();
+            mProgress = CallStates.STARTED;
             mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
                     // say "911, do you need fire, ambulance or police?"
-                    say("Nine one one, do you need fire, ambulance or police?", "01_EMERGENCY_TYPE");
+                    mProgress = CallStates.EMERGENCY_TYPE;
+                    say("Nine one one, do you need fire, ambulance or police?", CallStates.EMERGENCY_TYPE.name());
                 }
             });
 
@@ -90,8 +96,7 @@ public class PracticeDialerActivity extends Activity implements TextToSpeech.OnI
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         //intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getApplication().getPackageName());
-        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS,5);
-        Log.d("DEV", "Starting to listen in background");
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
         mSpeechRecognizer.startListening(intent);
     }
 
@@ -113,7 +118,7 @@ public class PracticeDialerActivity extends Activity implements TextToSpeech.OnI
     @SuppressLint("NewApi")
     private void say(String text, String id) {
         if(isTTSAvailable) {
-            if (Build.VERSION.SDK_INT < 21) {
+            if (Build.VERSION.SDK_INT >= 21) {
                 mTextToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null, id);
             } else {
                 HashMap<String, String> mSpeechParams = new HashMap();
@@ -131,9 +136,7 @@ public class PracticeDialerActivity extends Activity implements TextToSpeech.OnI
 
         @Override
         public void onDone(String utteranceId) {
-            switch (utteranceId) {
-                case "01_EMERGENCY_TYPE":
-
+            if (utteranceId.equalsIgnoreCase(CallStates.EMERGENCY_TYPE.name())) {
                 // TODO: if level 1, show image prompt depending on the emergency.
 //                switch (mVideo.type) {
 //                    case FIRE:
@@ -143,35 +146,22 @@ public class PracticeDialerActivity extends Activity implements TextToSpeech.OnI
 //                    case POLICE:
 //                        break;
 //                }
-                // TODO: listen for answer
+                // listen for answer
                 PracticeDialerActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         startListeningInBackground();
                     }
                 });
-
-
-                // TODO: check answer
-                switch (mVideo.type) {
-                    case FIRE:
-                        break;
-                    case AMBULANCE:
-                        break;
-                    case POLICE:
-                        break;
-                }
-
-
-                // TODO: say "what is your address?"
-                // Assist911Application.say("What is your address?");
-                // TODO: listen for answer
-                // TODO: say "what is name?"
-                // Assist911Application.say("What is your name?");
-                // Assist911Application._SharedPreferences.getString("username","");
-                // TODO: listen for answer
-
-                    break;
+            }
+//            else if(utteranceId.equalsIgnoreCase(CallStates.ADDRESS.name())) {
+            else {
+                PracticeDialerActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        startListeningInBackground();
+                    }
+                });
             }
         }
 
@@ -181,67 +171,92 @@ public class PracticeDialerActivity extends Activity implements TextToSpeech.OnI
         }
     };
 
-    class VoiceRecognitionListener implements RecognitionListener {
-        Activity mVoiceRecognition;
 
-        public VoiceRecognitionListener(Activity instance) {
+
+    class VoiceRecognitionListener implements RecognitionListener {
+        PracticeDialerActivity mVoiceRecognition;
+
+        public VoiceRecognitionListener(PracticeDialerActivity instance) {
             mVoiceRecognition = instance;
         }
         public void onResults(Bundle data) {
-            //Log.d(TAG, "onResults " + data);
             ArrayList<String> matches = data.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-            float[] value = data.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES);
 
-            Log.d("DEV", matches.get(0).toString());
+            String mSpeechResult;
+            if(matches.size() > 0) {
+                mSpeechResult = matches.get(0).toString();
+                if(Assist911Application.isDevMode) {
+                    Toast.makeText(PracticeDialerActivity.this, mSpeechResult, Toast.LENGTH_LONG).show();
+                }
+            }
+            else {
+                mSpeechResult = "";
+                if(Assist911Application.isDevMode) {
+                    Toast.makeText(PracticeDialerActivity.this, "Couldn't catch what you said :(", Toast.LENGTH_LONG).show();
+                }
+            }
 
-//        mVoiceRecognition.mText.setText("Results: " + String.valueOf(matches.size()));
-//
-//        if(value != null) { // CONFIDENCE_SCORES wasn't added until API level 14
-//            String[] combined = new String[matches.size()];
-//            for(int i = 0; i < matches.size(); i++) // The size of the data and value is the same
-//                combined[i] = matches.get(i).toString() + "\nScore: " + Float.toString(value[i]);
-//            mVoiceRecognition.mList.setAdapter(new ArrayAdapter<String>(mVoiceRecognition, android.R.layout.simple_list_item_1,combined));
-//        } else
-//            mVoiceRecognition.mList.setAdapter(new ArrayAdapter<String>(mVoiceRecognition, android.R.layout.simple_list_item_1,matches));
+            if(mProgress == CallStates.EMERGENCY_TYPE) {
+                // check answer for emergency type
+                if(mVideo.type == VideoItem.EMERGENCYTYPE.FIRE && mSpeechResult.contains("fire")
+                        || mVideo.type == VideoItem.EMERGENCYTYPE.AMBULANCE && mSpeechResult.contains("ambulance")
+                        || mVideo.type == VideoItem.EMERGENCYTYPE.POLICE && mSpeechResult.contains("police"))
+                {
+                    // say "what is your address?"
+                    mProgress = CallStates.ADDRESS;
+                    say("What is your address?", CallStates.ADDRESS.name());
+                }
+            }
+            else if (mProgress == CallStates.ADDRESS) {
+//                String mAddress = Assist911Application._SharedPreferences.getString("address","");
+
+                // say "what is name?"
+                mProgress = CallStates.NAME;
+                say("What is your name?", CallStates.NAME.name());
+            }
+            else if (mProgress == CallStates.NAME) {
+//                String mUsername = Assist911Application._SharedPreferences.getString("username","");
+
+                // say "what's the problem?"
+                mProgress = CallStates.DETAILS;
+                say("What's the problem?", CallStates.DETAILS.name());
+            }
+            else if (mProgress == CallStates.DETAILS) {
+            }
         }
 
         public void onBeginningOfSpeech() {
-            //Log.d(TAG, "onBeginningOfSpeech");
-//        mVoiceRecognition.mText.setText("Sounding good!");
-
-            Log.d("DEV", "onBeginningOfSpeech()");
         }
+
         public void onBufferReceived(byte[] buffer) {
-            //Log.d(TAG, "onBufferReceived");
         }
-        public void onEndOfSpeech() {
-            //Log.d(TAG, "onEndofSpeech");
-//        mVoiceRecognition.mText.setText("Waiting for result...");
 
-            Log.d("DEV", "onEndOfSpeech()");
+        public void onEndOfSpeech() {
         }
+
         public void onError(int error) {
-            //Log.d(TAG, "error " + error);
-//        mVoiceRecognition.mText.setText("error " + error);
+//            Log.d(TAG, "error " + error);
+
+        if(Assist911Application.isDevMode) {
+            Toast.makeText(PracticeDialerActivity.this, "Error: " + error, Toast.LENGTH_LONG).show();
+        }
 
 //        if(error == 8) {
 //            mVoiceRecognition.sr.cancel();
 //            mVoiceRecognition.startListeningInBackground();
 //        }
+        }
 
-            Log.d("DEV", "onError() " + error);
-        }
         public void onEvent(int eventType, Bundle params) {
-            //Log.d(TAG, "onEvent " + eventType);
         }
+
         public void onPartialResults(Bundle partialResults) {
-            //Log.d(TAG, "onPartialResults");
         }
+
         public void onReadyForSpeech(Bundle params) {
-            //Log.d(TAG, "onReadyForSpeech");
         }
+
         public void onRmsChanged(float rmsdB) {
-            //Log.d(TAG, "onRmsChanged");
         }
     }
 
