@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.stmichaelshospital.assist911.Assist911Application;
@@ -19,8 +20,8 @@ import java.util.Random;
 public class PracticeVideoActivity extends Activity implements MediaPlayer.OnCompletionListener {
 
     private VideoView mVideoView;
-    private Button mPositiveButton;
-    private Button mNegativeButton;
+    private ImageView mPositiveButton;
+    private ImageView mNegativeButton;
     private VideoItem mVideo;
 
     @Override
@@ -34,8 +35,8 @@ public class PracticeVideoActivity extends Activity implements MediaPlayer.OnCom
 
     private void initializeViews() {
         mVideoView = (VideoView) findViewById(R.id.video_practice);
-        mPositiveButton = (Button) findViewById(R.id.btn_positive_practice);
-        mNegativeButton = (Button) findViewById(R.id.btn_negative_practice);
+        mPositiveButton = (ImageView) findViewById(R.id.btn_positive_practice);
+        mNegativeButton = (ImageView) findViewById(R.id.btn_negative_practice);
 
         mPositiveButton.setOnClickListener(onPositive);
         mNegativeButton.setOnClickListener(onNegative);

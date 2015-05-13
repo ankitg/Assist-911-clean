@@ -11,20 +11,65 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/tv_username_review_registration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
         android:id="@+id/tv_address_review_registration"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/subtitle_text_height"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/sim_aqua"
+        android:layout_marginTop="20dp"
+        android:text="Marki Sveen"/>
 
-    <Button
+    <TextView
+        android:id="@+id/tv_username_review_registration"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/subtitle_text_height"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/sim_aqua"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="257 Adelaide St W" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
+    <TextView
+        android:id="@+id/tv_correct_review_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/username_text_height"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="That's me. Let's start!"
+        android:layout_marginBottom="10dp" />
+
+    <ImageView
         android:id="@+id/btn_next_review_registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/button_play" />
+        android:src="@drawable/img_next_green"/>
+
+
+
+    <TextView
+        android:id="@+id/tv_edit_review_registration"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/username_text_height"
+        android:layout_height="wrap_content"
+        android:text="Need to update. Go back."
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp" />
+
+
+    <ImageView
+        android:id="@+id/btn_edit_review_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_back_orange"/>
 
 </LinearLayout>

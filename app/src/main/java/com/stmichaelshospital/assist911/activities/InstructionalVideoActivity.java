@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.VideoView;
 
 import com.stmichaelshospital.assist911.Assist911Application;
@@ -16,8 +17,8 @@ import com.stmichaelshospital.assist911.R;
 public class InstructionalVideoActivity  extends Activity implements MediaPlayer.OnCompletionListener {
 
     private VideoView mVideoView;
-    private Button mReplayButton;
-    private Button mNextButton;
+    private ImageView mReplayButton;
+    private ImageView mNextButton;
 
 
     @Override
@@ -32,8 +33,8 @@ public class InstructionalVideoActivity  extends Activity implements MediaPlayer
 
     private void initializeViews() {
         mVideoView = (VideoView) findViewById(R.id.video_instructions);
-        mReplayButton = (Button) findViewById(R.id.btn_replay_instructions);
-        mNextButton = (Button) findViewById(R.id.btn_next_instructions);
+        mReplayButton = (ImageView) findViewById(R.id.btn_replay_instructions);
+        mNextButton = (ImageView) findViewById(R.id.btn_next_instructions);
 
         mReplayButton.setOnClickListener(onReplay);
         mNextButton.setOnClickListener(onNext);

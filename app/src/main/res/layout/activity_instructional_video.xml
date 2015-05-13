@@ -15,24 +15,45 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:layout_below="@+id/video_instructions"
-        android:orientation="horizontal" >
+        android:layout_marginTop="10dp">
 
-        <Button
+        <ImageView
             android:id="@+id/btn_replay_instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/button_replay"
-            android:enabled="false" />
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/img_refresh_maroon"
+            android:layout_marginRight="40dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_next_instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/button_play"
-            android:enabled="false" />
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/img_next_aqua"
+            android:layout_marginLeft="40dp" />
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_replay_instructions"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@string/button_replay"-->
+            <!--android:enabled="false" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_next_instructions"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@string/button_play"-->
+            <!--android:enabled="false" />-->
+
+
 
     </LinearLayout>
 

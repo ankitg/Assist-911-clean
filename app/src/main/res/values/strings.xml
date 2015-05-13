@@ -2,6 +2,8 @@
     <string name="app_name">Assist 911</string>
 
     <!--Registration Page-->
+    <string name="title_app">SIM Kids 911</string>
+
     <string name="username_label">Username</string>
     <string name="address_label">Address</string>
     <string name="save_registration_data">Save</string>

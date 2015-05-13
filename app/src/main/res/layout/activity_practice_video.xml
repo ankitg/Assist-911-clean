@@ -18,22 +18,45 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
         android:layout_below="@+id/video_practice"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp">
 
-        <Button
-            android:id="@+id/btn_positive_practice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/button_positive" />
-
-        <Button
+        <ImageView
             android:id="@+id/btn_negative_practice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/button_negative" />
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/img_no_red"
+            android:layout_marginRight="40dp"/>
+
+        <ImageView
+            android:id="@+id/btn_positive_practice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/img_yes_green"
+            android:layout_marginLeft="40dp"/>
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_positive_practice"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@string/button_positive" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_negative_practice"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="@string/button_negative" />-->
+
+
+
+
 
     </LinearLayout>
 

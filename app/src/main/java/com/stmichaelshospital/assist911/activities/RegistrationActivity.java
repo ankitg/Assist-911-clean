@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.stmichaelshospital.assist911.Assist911Application;
 import com.stmichaelshospital.assist911.R;
@@ -15,7 +16,7 @@ public class RegistrationActivity extends Activity {
 
     private EditText mUsername;
     private EditText mAddress;
-    private Button mSaveButton;
+    private ImageView mSaveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class RegistrationActivity extends Activity {
     private void initializeViews() {
         mUsername = (EditText)findViewById(R.id.et_username_registration);
         mAddress = (EditText)findViewById(R.id.et_address_registration);
-        mSaveButton = (Button)findViewById(R.id.btn_save_registration);
+        mSaveButton = (ImageView)findViewById(R.id.btn_save_registration);
 
         mSaveButton.setOnClickListener(onSaveClicked);
     }

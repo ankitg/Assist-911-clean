@@ -10,38 +10,74 @@
     tools:context=".RegistrationActivity">
 
     <TextView
+        android:id="@+id/tv_title_registration"
+        android:text="@string/title_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title_text_height"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/sim_maroon"
+        android:paddingBottom="@dimen/title_vertical_margin"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/tv_username_registration"
         android:text="@string/username_label"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/username_text_height"
+        android:textColor="@color/sim_aqua"
+        android:layout_below="@+id/tv_title_registration"/>
 
     <EditText
         android:id="@+id/et_username_registration"
         android:layout_width="fill_parent"
         android:layout_height="@dimen/edit_text_height"
-        android:layout_below="@+id/tv_username_registration" />
+        android:layout_below="@+id/tv_username_registration"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:textSize="@dimen/username_edit_height"
+
+        />
 
     <TextView
         android:id="@+id/tv_address_registration"
         android:text="@string/address_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/title_vertical_margin"
+        android:textSize="@dimen/username_text_height"
+        android:textColor="@color/sim_aqua"
         android:layout_below="@+id/et_username_registration"/>
 
     <EditText
         android:id="@+id/et_address_registration"
         android:layout_width="fill_parent"
+        android:textSize="@dimen/username_edit_height"
         android:layout_height="@dimen/edit_text_height"
-        android:layout_below="@+id/tv_address_registration" />
+        android:layout_below="@+id/tv_address_registration"
+        />
 
-    <Button
+    <!--<Button-->
+        <!--android:id="@+id/btn_save_registration"-->
+        <!--android:layout_width="150dip"-->
+        <!--android:background="@color/sim_green"-->
+        <!--android:textSize="@dimen/username_edit_height"-->
+        <!--android:textColor="@color/sim_aqua"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="@dimen/title_vertical_margin"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="@string/save_registration_data"-->
+        <!--android:layout_below="@+id/et_address_registration"/>-->
+
+    <ImageView
         android:id="@+id/btn_save_registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/edit_text_height"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/img_yes_green"
+        android:layout_below="@+id/et_address_registration"
         android:layout_centerHorizontal="true"
-        android:text="@string/save_registration_data"/>
+        android:layout_marginTop="10dp" />
 
 
 </RelativeLayout>

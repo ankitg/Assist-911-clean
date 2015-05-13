@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sim_old_aqua">#198F90</color>
+    <color name="sim_old_green">#9BD19D</color>
+    <color name="sim_old_maroon">#9E004D</color>
+    <color name="sim_old_orange">#F1594E</color>
+    <color name="sim_old_yellow">#FBAF43</color>
+
+    <color name="sim_aqua">#027368</color>
+    <color name="sim_green">#A3BF3F</color>
+    <color name="sim_maroon">#400F13</color>
+    <color name="sim_red">#D93A2B</color>
+    <color name="sim_yellow">#F2B950</color>
+    <color name="sim_yellow_light">#F9DBB7</color>
+</resources>
