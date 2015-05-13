@@ -14,7 +14,7 @@ public class Assist911Application extends Application {
     public static SharedPreferences.Editor _SharedPreferencesEditor = null;
     public static ArrayList<VideoItem> _VideosArray = new ArrayList<VideoItem>();
 
-    public static final Boolean isDevMode = true;
+    public static final Boolean isDevMode = false;
 
     @Override
     public void onCreate() {

@@ -7,7 +7,7 @@ android:orientation="vertical"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context="com.stmichaelshospital.assist911.activities.PracticeLockScreenActivity"
-android:background="@color/sim_old_aqua"
+android:background="@drawable/img_lockscreen_wallpaper"
     >
 
 <TableLayout
